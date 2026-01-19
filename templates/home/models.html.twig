@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% import 'macros/_panigale.html.twig' as panigale %}
+
+{% block title %}Ducati Panigale{% endblock %}
+
+{% block page_title %}
+    Gamme Ducati Panigale
+{% endblock %}
+
+{% block main %}
+
+    <div class="card highlight">
+        <blockquote>
+            {{ quote|slice(0, 80)|capitalize }}
+        </blockquote>
+    </div>
+
+    <p>
+        Nombre de modèles Panigale :
+        <strong>{{ models|length }}</strong>
+    </p>
+
+{% for model in models %}
+    {{ panigale.card(model, ducati_badge(model.power)) }}
+{% endfor %}
+
+{% endblock %}

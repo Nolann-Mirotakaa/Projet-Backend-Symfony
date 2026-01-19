@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site dédié à l'univers Ducati">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <title>{% block title %}Ducati{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+<header>
+    <h1>{% block page_title %}Ducati{% endblock %}</h1>
+
+    {% block menu %}
+        {% include 'partials/_menu.html.twig' %}
+    {% endblock %}
+</header>
+
+
+<main>
+    {% block main %}{% endblock %}
+</main>
+
+<footer>
+    {% block footer %}
+        <p>© {{ "now"|date("Y") }} - Ducati Fan Site</p>
+    {% endblock %}
+</footer>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

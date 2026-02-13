@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block main %}
+<main class="login-main">
+    <div class="register-page">
+        <div class="register-overlay"></div>
+
+
+        <div class="annonce-wrapper register-glass">
+            <div class="ducati-form-card glass">
+                <h2 class="ducati-title">Connexion</h2>
+
+                {% if error %}
+                    <div class="login-error">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                <form method="post">
+                    <div class="ducati-row">
+                        <div class="ducati-field">
+                            <label for="email">Email</label>
+                            <input
+                                type="email"
+                                value="{{ last_username }}"
+                                name="email"
+                                id="email"
+                                required
+                                autofocus
+                            >
+                        </div>
+                    </div>
+
+                    <div class="ducati-row">
+                        <div class="ducati-field">
+                            <label for="password">Mot de passe</label>
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"
+                        value="{{ csrf_token('authenticate') }}">
+
+                    <div class="ducati-actions">
+                        <button class="ducati-btn">Se connecter</button>
+                    </div>
+                </form>
+                <div class="login-links">
+                    <p>
+                        Pas encore de compte ?
+                        <a href="{{ path('app_register') }}">Créer un compte</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

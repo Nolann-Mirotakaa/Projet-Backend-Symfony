@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ annonce.titre }}{% endblock %}
+
+{% block page_title %}
+    {{ annonce.titre }}
+{% endblock %}
+
+{% block main %}
+
+<div class="annonce-wrapper">
+
+    <div class="annonce-show-card">
+
+        <div class="annonce-show-image">
+            {% if annonce.image %}
+                <img src="{{ asset('uploads/' ~ annonce.image) }}" alt="Moto">
+            {% else %}
+                <p>Aucune image disponible</p>
+            {% endif %}
+        </div>
+
+        <div class="annonce-show-content">
+
+            <h2 class="annonce-title">{{ annonce.titre }}</h2>
+
+            <div class="annonce-details">
+                <div class="annonce-detail">
+                    <span class="label">Marque</span>
+                    <span class="value">{{ annonce.marque }}</span>
+                </div>
+
+                <div class="annonce-detail">
+                    <span class="label">Modèle</span>
+                    <span class="value">{{ annonce.modele }}</span>
+                </div>
+
+                <div class="annonce-detail">
+                    <span class="label">Année</span>
+                    <span class="value">{{ annonce.annee }}</span>
+                </div>
+
+                {% if annonce.kilometrage %}
+                    <div class="annonce-detail">
+                        <span class="label">Kilométrage</span>
+                        <span class="value">{{ annonce.kilometrage }} km</span>
+                    </div>
+                {% endif %}
+
+                <div class="annonce-detail">
+                    <span class="label">Vendeur</span>
+                    <span class="value">
+                        {{ annonce.auteur.prenom }} {{ annonce.auteur.nom }}
+                    </span>
+                </div>
+
+                <div class="annonce-detail">
+                    <span class="label">Téléphone</span>
+                    <span class="value">
+                        {{ annonce.auteur.telephone }}
+                    </span>
+                </div>
+
+                <div class="annonce-detail">
+                    <span class="label">Date de publication</span>
+                    <span class="value">
+                        {{ annonce.dateCreation|date('d/m/Y à H:i') }}
+                    </span>
+                </div>
+            </div>
+            <div class="annonce-description">
+                <h3>Description</h3>
+                <p>{{ annonce.description }}</p>
+            </div>
+
+            <div class="annonce-price">
+                {{ annonce.prix }} €
+            </div>
+
+            <div class="annonce-actions">
+
+                {% if app.user and app.user == annonce.auteur %}
+                    <a href="{{ path('annonce_edit', {id: annonce.id}) }}" class="ducati-btn">Modifier</a>
+
+                    <form method="post" action="{{ path('annonce_delete', {id: annonce.id}) }}" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
+                        <button class="ducati-btn">Supprimer</button>
+                    </form>
+                {% endif %}
+
+                <a href="{{ path('annonce_list') }}"
+                class="ducati-btn">
+                    Retour aux annonces
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

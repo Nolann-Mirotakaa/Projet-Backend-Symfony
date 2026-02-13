@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\AnnonceMotoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,6 +13,10 @@ class AnnonceMoto
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $auteur = null;
 
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
@@ -34,12 +39,26 @@ class AnnonceMoto
     #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $dateCreation = null;
 
         public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(User $auteur): self
+    {
+        $this->auteur = $auteur;
+        return $this;
     }
 
     public function getTitre(): ?string
@@ -127,6 +146,17 @@ class AnnonceMoto
     public function setDateCreation(\DateTimeImmutable $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
         return $this;
     }
 }

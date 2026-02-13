@@ -2,33 +2,51 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\MotoRepository;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity(repositoryClass: MotoRepository::class)]
 class Moto
 {
-    #[Assert\NotBlank(message: "Le nom du modèle est obligatoire")]
-    #[Assert\Length(min: 2, max: 100)]
-    private ?string $name = null;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[Assert\NotBlank(message: "La description est obligatoire")]
-    #[Assert\Length(min: 10)]
-    private ?string $description = null;
+    #[ORM\Column(length: 150)]
+    private string $name;
 
-    #[Assert\NotBlank(message: "La cylindrée est obligatoire")]
-    #[Assert\Positive(message: "La cylindrée doit être positive")]
-    private ?int $engine = null;
+    #[ORM\Column(length: 100)]
+    private string $brand;
 
-    #[Assert\NotBlank(message: "Le prix est obligatoire")]
-    #[Assert\Positive(message: "Le prix doit être positif")]
-    private ?float $price = null;
+    #[ORM\Column]
+    private int $year;
 
-    #[Assert\NotBlank(message: "L'année de fabrication est obligatoire")]
-    #[Assert\Type("integer")]
+    #[ORM\Column]
+    private int $power; // en chevaux (HP)
 
-    private ?int $year = null;
-    // Getters & Setters
+    #[ORM\Column]
+    private int $displacement; // cylindrée en cc
 
-    public function getName(): ?string
+    #[ORM\Column(length: 50)]
+    private string $engineType; // V4, V-Twin, etc.
+
+    #[ORM\Column(length: 50)]
+    private string $category; // Sportive, Roadster, Trail, etc.
+
+    #[ORM\Column(length: 255)]
+    private string $image; // nom du fichier image
+
+    /* ======================
+       Getters / Setters
+    ====================== */
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
     {
         return $this->name;
     }
@@ -39,48 +57,80 @@ class Moto
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getBrand(): string
     {
-        return $this->description;
+        return $this->brand;
     }
 
-    public function setDescription(string $description): self
+    public function setBrand(string $brand): self
     {
-        $this->description = $description;
+        $this->brand = $brand;
         return $this;
     }
 
-    public function getEngine(): ?int
+    public function getYear(): int
     {
-        return $this->engine;
+        return $this->year;
     }
 
-    public function setEngine(int $engine): self
+    public function setYear(int $year): self
     {
-        $this->engine = $engine;
+        $this->year = $year;
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPower(): int
     {
-        return $this->price;
+        return $this->power;
     }
 
-    public function setPrice(float $price): self
+    public function setPower(int $power): self
     {
-        $this->price = $price;
+        $this->power = $power;
         return $this;
     }
 
-    public function getYear(): ?int 
-    { 
-        return $this->year;  
+    public function getDisplacement(): int
+    {
+        return $this->displacement;
     }
 
-    public function setYear(int $year): self 
-    { 
-        $this->year = $year; 
-        return $this; 
+    public function setDisplacement(int $displacement): self
+    {
+        $this->displacement = $displacement;
+        return $this;
+    }
+
+    public function getEngineType(): string
+    {
+        return $this->engineType;
+    }
+
+    public function setEngineType(string $engineType): self
+    {
+        $this->engineType = $engineType;
+        return $this;
+    }
+
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+        return $this;
     }
 }
-

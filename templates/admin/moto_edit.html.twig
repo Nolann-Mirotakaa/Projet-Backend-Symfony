@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit model{% endblock %}
+{% block page_title %}Edit Ducati Model{% endblock %}
+
+{% block main %}
+
+<div class="annonce-wrapper">
+
+    <form method="post" class="ducati-form-card">
+
+        <h2 class="ducati-title">
+            Modifier : {{ moto.name }}
+        </h2>
+
+        <div class="ducati-row">
+            <div class="ducati-field">
+                <label>Nom du model</label>
+                <input type="text" name="name" value="{{ moto.name }}" required>
+            </div>
+        </div>
+
+        <div class="two-cols">
+
+            <div class="ducati-field">
+                <label>Marque</label>
+                <input type="text" name="brand" value="{{ moto.brand }}">
+            </div>
+
+            <div class="ducati-field">
+                <label>Categorie</label>
+                <input type="text" name="category" value="{{ moto.category }}">
+            </div>
+
+        </div>
+
+        <div class="two-cols">
+
+            <div class="ducati-field">
+                <label>Annee</label>
+                <input type="number" name="year" value="{{ moto.year }}">
+            </div>
+
+            <div class="ducati-field">
+                <label>Puissance (HP)</label>
+                <input type="number" name="power" value="{{ moto.power }}">
+            </div>
+
+        </div>
+
+        <div class="two-cols">
+
+            <div class="ducati-field">
+                <label>Cylindre (cc)</label>
+                <input type="number" name="displacement" value="{{ moto.displacement }}">
+            </div>
+
+            <div class="ducati-field">
+                <label>Moteur</label>
+                <input type="text" name="engineType" value="{{ moto.engineType }}">
+            </div>
+
+        </div>
+
+        <div class="annonce-actions">
+
+            <button class="ducati-btn">
+                Enregistré
+            </button>
+
+            <a href="{{ path('admin_motos') }}" class="ducati-btn">
+                ← Retour
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel Administrateur{% endblock %}
+
+{% block page_title %}
+    Panel Administrateur
+{% endblock %}
+
+{% block main %}
+
+<div class="admin-dashboard">
+
+    <a href="{{ path('admin_panel') }}" class="admin-card">
+        <h3>📰 Annonces</h3>
+        <p>Gérer toutes les annonces</p>
+    </a>
+
+    <a href="{{ path('admin_users') }}" class="admin-card">
+        <h3>👤 Utilisateurs</h3>
+        <p>Gérer les comptes utilisateurs</p>
+    </a>
+
+    <a href="{{ path('admin_motos') }}" class="admin-card">
+        <h3>🏍️ Modèles</h3>
+        <p>Gérer les modèles Ducati</p>
+    </a>
+
+</div>
+<div class="center-buttons">
+    <button onclick="history.back()" class="ducati-btn">
+        ←  Retour
+    </button>
+
+    <a href="#" class="ducati-btn">
+        ⬆ Haut de page
+    </a>
+</div>
+{% endblock %}

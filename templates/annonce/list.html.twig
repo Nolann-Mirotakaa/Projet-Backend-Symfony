@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces motos{% endblock %}
+
+{% block page_title %}
+    Annonces motos
+{% endblock %}
+
+{% block main %}
+
+<div class="annonces-container">
+
+    {% for annonce in annonces %}
+
+        <a href="{{ path('annonce_show', { id: annonce.id }) }}" class="annonce-link">
+
+            <article class="annonce-card">
+
+                <div class="annonce-image">
+                    {% if annonce.image %}
+                        <img src="{{ asset('uploads/' ~ annonce.image) }}" alt="Moto">
+                    {% endif %}
+                </div>
+
+                <div class="annonce-body">
+                    <h3 class="annonce-title">{{ annonce.titre }}</h3>
+
+                    <div class="annonce-details">
+                        <div class="annonce-detail">
+                            <span class="label">Marque</span>
+                            <span class="value">{{ annonce.marque }}</span>
+                        </div>
+
+                        <div class="annonce-detail">
+                            <span class="label">Modèle</span>
+                            <span class="value">{{ annonce.modele }}</span>
+                        </div>
+
+                        <div class="annonce-detail">
+                            <span class="label">Année</span>
+                            <span class="value">{{ annonce.annee }}</span>
+                        </div>
+
+                        {% if annonce.kilometrage %}
+                            <div class="annonce-detail">
+                                <span class="label">Kilométrage</span>
+                                <span class="value">{{ annonce.kilometrage }} km</span>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="annonce-price">
+                        {{ annonce.prix }} €
+                    </div>
+                </div>
+            </article>
+        </a>
+    {% else %}
+        <p>Aucune annonce disponible.</p>
+    {% endfor %}
+</div>
+<div class="center-buttons">
+    <button onclick="history.back()" class="ducati-btn">
+        ←  Retour
+    </button>
+
+    <a href="#" class="ducati-btn">
+        ⬆ Haut de page
+    </a>
+</div>
+{% endblock %}

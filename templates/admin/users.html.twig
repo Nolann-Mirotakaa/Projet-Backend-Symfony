@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+{% block page_title %}Gestion des utilisateurs{% endblock %}
+
+{% block main %}
+
+<div class="annonces-container">
+
+    {% for user in users %}
+
+        <article class="annonce-card">
+
+            <div class="annonce-body">
+
+                <h3 class="annonce-title">
+                    {{ user.prenom }} {{ user.nom }}
+                </h3>
+
+                <p>
+                    <strong>Email :</strong> {{ user.email }}<br>
+                    <strong>Rôles :</strong> {{ user.roles|join(', ') }}
+                </p>
+
+                <div class="annonce-actions">
+
+                    {% if 'ROLE_ADMIN' not in user.roles %}
+                        <a href="{{ path('admin_user_promote', {id: user.id}) }}"
+                           class="ducati-btn">
+                            Rendre admin
+                        </a>
+                    {% else %}
+                        <span class="badge-admin">ADMIN</span>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </article>
+
+    {% else %}
+        <p>Aucun utilisateur.</p>
+
+    {% endfor %}
+</div>
+<div class="center-buttons">
+    <button onclick="history.back()" class="ducati-btn">
+        ←  Retour
+    </button>
+
+    <a href="#" class="ducati-btn">
+        ⬆ Haut de page
+    </a>
+</div>
+{% endblock %}

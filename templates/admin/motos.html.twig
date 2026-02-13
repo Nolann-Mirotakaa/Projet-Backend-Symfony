@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Models{% endblock %}
+{% block page_title %}Gestion des models Ducati {% endblock %}
+
+{% block main %}
+
+<div class="annonces-container">
+
+    {% for moto in motos %}
+
+        <article class="annonce-card">
+
+            <div class="annonce-image">
+                {% if moto.image %}
+                    <img src="{{ asset('uploads/motos/' ~ moto.image) }}" alt="{{ moto.name }}">
+                {% endif %}
+            </div>
+
+            <div class="annonce-body">
+
+                <h3 class="annonce-title">
+                    {{ moto.name }}
+                </h3>
+
+                <div class="annonce-details">
+
+                    <div class="annonce-detail">
+                        <span class="label">Marque</span>
+                        <span class="value">{{ moto.brand }}</span>
+                    </div>
+
+                    <div class="annonce-detail">
+                        <span class="label">Category</span>
+                        <span class="value">{{ moto.category }}</span>
+                    </div>
+
+                    <div class="annonce-detail">
+                        <span class="label">Annee</span>
+                        <span class="value">{{ moto.year }}</span>
+                    </div>
+
+                    <div class="annonce-detail">
+                        <span class="label">Puissance</span>
+                        <span class="value">{{ moto.power }} HP</span>
+                    </div>
+
+                    <div class="annonce-detail">
+                        <span class="label">Moteur</span>
+                        <span class="value">{{ moto.engineType }}</span>
+                    </div>
+
+                    <div class="annonce-detail">
+                        <span class="label">Cylindre</span>
+                        <span class="value">{{ moto.displacement }} cc</span>
+                    </div>
+                </div>
+
+                <div class="annonce-actions">
+                    <a href="{{ path('admin_moto_edit', {id: moto.id}) }}"
+                       class="ducati-btn">
+                        Modifier
+                    </a>
+
+                    <a href="{{ path('admin_moto_delete', {id: moto.id}) }}"
+                       class="ducati-btn">
+                        Supprimer
+                    </a>
+                </div>
+            </div>
+        </article>
+    {% else %}
+        <p>Pas de model enregistré</p>
+    {% endfor %}
+</div>
+<div class="center-buttons">
+    <button onclick="history.back()" class="ducati-btn">
+        ←  Retour
+    </button>
+
+    <a href="#" class="ducati-btn">
+        ⬆ Haut de page
+    </a>
+</div>
+{% endblock %}

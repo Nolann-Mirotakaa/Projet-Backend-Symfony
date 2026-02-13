@@ -1,6 +1,44 @@
-<nav>
-    <a href="{{ path('home') }}">Accueil</a>
-    <a href="{{ path('about') }}">Histoire</a>
-    <a href="{{ path('models') }}">Modèle</a>
-    <a href="{{ path('moto_create') }}">Ajouter</a>
+<nav class="main-nav">
+
+    <div class="nav-left">
+        <a href="{{ path('home') }}">Accueil</a>
+        <a href="{{ path('about') }}">Histoire</a>
+        <a href="{{ path('models') }}">Modèles</a>
+        <a href="{{ path('annonce_list') }}">Annonces</a>
+        {% if app.user %}
+            <a href="{{ path('annonce_create') }}">Ajouter</a>
+        {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin_dashboard') }}">Admin</a>
+    {% endif %}
+    </div>
+
+        <div class="logo">
+        Ducati
+    </div>
+
+    <div class="nav-right">
+        {% if app.user %}
+            <span class="nav-user">
+                {{ app.user.prenom }}
+            </span>
+
+            <a href="{{ path('app_logout') }}"
+               class="ducati-btn-1">
+                Déconnexion
+            </a>
+        {% else %}
+            <a href="{{ path('app_login') }}"
+               class="ducati-btn-1">
+                Connexion
+            </a>
+
+            <a href="{{ path('app_register') }}"
+               class="ducati-btn-1">
+                Inscription
+            </a>
+        {% endif %}
+    </div>
+
 </nav>
+

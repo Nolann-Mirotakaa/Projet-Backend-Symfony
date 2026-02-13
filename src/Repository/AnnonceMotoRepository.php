@@ -15,6 +15,16 @@ class AnnonceMotoRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, AnnonceMoto::class);
     }
+    
+    public function findLatest(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.dateCreation', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
 //    /**
 //     * @return AnnonceMoto[] Returns an array of AnnonceMoto objects

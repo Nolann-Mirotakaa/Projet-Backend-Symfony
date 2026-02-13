@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un compte{% endblock %}
+
+{% block main %}
+<div class="register-page">
+    <div class="register-overlay"></div>
+
+        <div class="annonce-wrapper register-glass">
+            <div class="ducati-form-card glass">
+                <h2 class="ducati-title">Créer un compte</h2>
+
+                {{ form_start(registrationForm) }}
+
+                <div class="ducati-row">
+                    <div class="ducati-field">
+                        {{ form_label(registrationForm.email) }}
+                        {{ form_widget(registrationForm.email) }}
+                    </div>
+                </div>
+
+                <div class="ducati-row two-cols">
+                    <div class="ducati-field">
+                        {{ form_label(registrationForm.nom) }}
+                        {{ form_widget(registrationForm.nom) }}
+                    </div>
+
+                    <div class="ducati-field">
+                        {{ form_label(registrationForm.prenom) }}
+                        {{ form_widget(registrationForm.prenom) }}
+                    </div>
+                </div>
+
+                <div class="ducati-row">
+                    <div class="ducati-field">
+                        {{ form_label(registrationForm.telephone) }}
+                        {{ form_widget(registrationForm.telephone) }}
+                    </div>
+                </div>
+
+                <div class="ducati-row">
+                    <div class="ducati-field">
+                        {{ form_label(registrationForm.plainPassword) }}
+                        {{ form_widget(registrationForm.plainPassword) }}
+                    </div>
+                </div>
+                <div class="ducati-actions">
+                    <button class="ducati-btn">Créer mon compte</button>
+                </div>                
+                <div class="ducati-row">
+                    <div class="ducati-field">
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

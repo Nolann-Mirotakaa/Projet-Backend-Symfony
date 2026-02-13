@@ -1,67 +1,519 @@
 /* =======================
    Styles globaux
 ======================= */
-body { margin: 0; font-family: Arial, sans-serif; background: #111; color: #eee; } 
+body { margin: 0; font-family: Arial, sans-serif; background: #111; color: #eee; padding: 0; height: 100%;} 
 header, footer { background: #c00; padding: 1rem; text-align: center; } h2 { color: #ff4444; } 
 nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; } 
-main { padding: 2rem; min-height: 70vh; } 
+main { padding: 0; min-height: 100vh; } 
 .card { background: #222; padding: 1rem; margin: 1rem 0; border-radius: 8px; } 
 .highlight { border: 2px solid #c00; }
 
+html {
+    scroll-behavior: smooth;
+}
 
-/* Formulaire dans card */
-.card.highlight form {
+/* PAGE CONNEXION */
+.login-page {
+    position: relative;
+    min-height: 100vh;
+    background: url('https://images.ctfassets.net/x7j9qwvpvr5s/43adRuY33iuCayAyMy3wTw/5545b174f876fc95ffcfff3d643c4d23/Ducati-MY25-Panigale-V4-overview-carousel-hero-link-1600x650-01.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* assombrir l'image pour lisibilité */
+.login-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+
+/* FORMULAIRE */
+.login-box {
+    position: relative;
+    z-index: 1;
+    width: 380px;
+    padding: 35px;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    text-align: center;
+    color: white;
+}
+
+.login-box h2 {
+    margin-bottom: 25px;
+}
+
+/* INPUTS */
+.login-box input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 18px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+}
+
+/* ERREUR */
+.login-error {
+    background: rgba(255,0,0,0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    user-select: none;
+    cursor: default;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+}
+
+/* Navigation gauche */
+.nav-left a {
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.nav-left a:hover {
+    text-decoration: underline;
+}
+
+/* Partie droite */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-user {
+    color: white;
+    font-weight: bold;
+}
+
+/* Boutons noirs (réutilisation ducati-btn) */
+.ducati-btn-1 {
+    background: linear-gradient(135deg, #c00, #222);
+    color: white;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.ducati-btn-1:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px rgba(255,0,0,0.7);
+}
+
+
+/* Wrapper centré */
+.annonce-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 0;
+    padding: 0 20px; /* sécurité mobile */
+}
+
+/* Carte formulaire */
+.ducati-form-card {
+    width: 100%;
+    max-width: 600px;
+    background: #1a1a1a;
+    padding: 35px;
+    border: 2px solid #c00;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255,0,0,0.3);
+}
+
+/* Titre */
+.ducati-title {
+    text-align: center;
+    color: #ff2a2a;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* Lignes */
+.ducati-row {
+    margin-bottom: 20px;
+    margin-right: 25px;
+}
+
+.two-cols {
+    display: flex;
+    gap: 80px;
+}
+
+/* Champs */
+.ducati-field {
+    flex: 1;
+}
+
+.ducati-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.ducati-field input,
+.ducati-field textarea,
+.ducati-field select {
+    width: 100%;
+    padding: 10px 12px;
+    background: #111;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.ducati-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.ducati-field input:focus,
+.ducati-field textarea:focus {
+    outline: none;
+    border-color: #c00;
+    box-shadow: 0 0 6px rgba(255,0,0,0.6);
+}
+
+/* Bouton */
+.ducati-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.ducati-btn {
+    background: linear-gradient(135deg, #c00, #ff2a2a);
+    color: white;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.ducati-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px rgba(255,0,0,0.7);
+}
+
+.center-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+
+.ducati-file-input {
+    display: none;
+}
+
+.ducati-file-name {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Cache le bouton "Choisir un fichier" */
+.ducati-file::file-selector-button {
+    display: none;
+}
+
+/* Firefox */
+.ducati-file::-moz-file-upload-button {
+    display: none;
+}
+
+/* Style du champ restant */
+.ducati-file {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #c00;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.annonces-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Carte annonce */
+.annonce-card {
+    background: #1a1a1a;
+    border: 2px solid #c00;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(255,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.annonce-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(255,0,0,0.35);
+}
+
+/* Image */
+.annonce-image {
+    width: 100%;
+    height: 200px;
+    background: #111;
+    border-bottom: 2px solid #c00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.annonce-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Contenu */
+.annonce-body {
+    padding: 20px;
+}
+
+/* Titre */
+.annonce-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff2a2a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Infos secondaires */
+.annonce-details {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+/* Prix */
+.annonce-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #c00, #ff2a2a);
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Détails annonce lisibles */
+.annonce-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 20px;
+    margin-bottom: 18px;
+}
+
+.annonce-detail {
     display: flex;
     flex-direction: column;
 }
 
-/* Champs du formulaire */
-.card.highlight input,
-.card.highlight textarea,
-.card.highlight select {
-    background: #222;
-    color: #eee;
-    border: 3px solid #444;
-    border-radius: 5px;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    width: 100%;
-    box-sizing: border-box;
+.annonce-detail .label {
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.card.highlight input:focus,
-.card.highlight textarea:focus,
-.card.highlight select:focus {
-    outline: none;
-    border-color: #c00;
-    box-shadow: 0 0 5px rgba(204, 0, 0, 0.5);
-}
-
-/* Bouton submit */
-.card.highlight button[type="submit"] {
-    background: #c00;
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
+.annonce-detail .value {
+    font-size: 14px;
     font-weight: bold;
-    transition: background 0.3s;
+    color: #eee;
 }
 
-.card.highlight button[type="submit"]:hover {
-    background: #ff4444;
+.annonce-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.annonce-actions {
+    display: flex;
+    justify-content: center;   /* centre horizontalement */
+    align-items: center;
+    gap: 15px; 
+    margin-top: 40px;     
+    margin-bottom: 40px; 
+    flex-wrap: wrap;
 }
 
 
-/* Responsive */
-@media (max-width: 600px) {
-    .card.highlight {
-        padding: 1rem;
-        margin: 1rem;
-    }
+.annonce-show-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    background: #1a1a1a;
+    border: 2px solid #c00;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.25);
 }
+
+/* Image grande */
+.annonce-show-image {
+    background: #111;
+    border: 2px solid #c00;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.annonce-show-image img {
+    max-width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+}
+
+/* Contenu */
+.annonce-show-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.annonce-description h3 {
+    color: #ff2a2a;
+    margin-bottom: 10px;
+}
+
+.annonce-description p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+/* PAGE INSCRIPTION - FOND */
+.register-page {
+    position: relative;
+    min-height: 100vh;
+    background: url('https://images.ctfassets.net/x7j9qwvpvr5s/43adRuY33iuCayAyMy3wTw/5545b174f876fc95ffcfff3d643c4d23/Ducati-MY25-Panigale-V4-overview-carousel-hero-link-1600x650-01.jpg')
+        center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* assombrissement */
+.register-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+}
+
+/* Carte transparente */
+.ducati-form-card.glass {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255,0,0,0.6);
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+}
+
+/* Inputs adaptés au glass */
+.ducati-form-card.glass input {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Labels plus lisibles */
+.ducati-form-card.glass label {
+    color: #fff;
+}
+
+/* Wrapper au-dessus de l'overlay */
+.register-glass {
+    position: relative;
+    z-index: 2;
+}
+
+.login-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-links a {
+    color: #ff2a2a;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+.admin-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.admin-card {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #c00;
+    padding: 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255,0,0,0.4);
+}
+
+.admin-card h3 {
+    margin-bottom: 10px;
+    color: #ff4444;
+}
+
+
+
 
 
 /* =======================
@@ -76,4 +528,14 @@ main { padding: 2rem; min-height: 70vh; }
         display: block;
         margin: 5px 0;
     }
+        
+    .card.highlight {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .annonce-show-card {
+    grid-template-columns: 1fr;
+    }
 }
+

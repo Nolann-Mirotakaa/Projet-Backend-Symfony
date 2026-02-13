@@ -1,27 +1,63 @@
 {% extends 'base.html.twig' %}
-{% import 'macros/_panigale.html.twig' as panigale %}
 
-{% block title %}Ducati Panigale{% endblock %}
+{% block title %}Gamme Ducati{% endblock %}
 
 {% block page_title %}
-    Gamme Ducati Panigale
+    Tous les modèles Ducati
 {% endblock %}
 
 {% block main %}
 
-    <div class="card highlight">
-        <blockquote>
-            {{ quote|slice(0, 80)|capitalize }}
-        </blockquote>
-    </div>
+<div class="annonces-container">
 
-    <p>
-        Nombre de modèles Panigale :
-        <strong>{{ models|length }}</strong>
-    </p>
+    {% for moto in motos %}
 
-{% for model in models %}
-    {{ panigale.card(model, ducati_badge(model.power)) }}
-{% endfor %}
+        <article class="annonce-card">
 
+            <div class="annonce-image">
+                <img src="{{ asset('uploads/motos/' ~ moto.image) }}" alt="{{ moto.name }}">
+            </div>
+
+            <div class="annonce-body">
+                <h3 class="annonce-title">{{ moto.name }}</h3>
+
+                <div class="annonce-details">
+
+                    <div class="annonce-detail">
+                        <span class="label">Marque</span>
+                        <span class="value">{{ moto.brand }}</span>
+                    </div>
+
+                    <div class="annonce-detail">
+                        <span class="label">Catégorie</span>
+                        <span class="value">{{ moto.category }}</span>
+                    </div>
+                    <div class="annonce-detail">
+                        <span class="label">Cylindrée</span>
+                        <span class="value">{{ moto.displacement }} cc</span>
+                    </div>
+                    <div class="annonce-detail">
+                        <span class="label">Puissance</span>
+                        <span class="value">{{ moto.power }} ch</span>
+                    </div>
+                    <div class="annonce-detail">
+                        <span class="label">Année</span>
+                        <span class="value">{{ moto.year }}</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    {% else %}
+        <p>Aucun modèle Ducati trouvé.</p>
+    {% endfor %}
+</div>
+<div class="center-buttons">
+    <button onclick="history.back()" class="ducati-btn">
+        ←  Retour
+    </button>
+
+    <a href="#" class="ducati-btn">
+        ⬆ Haut de page
+    </a>
+</div>
 {% endblock %}

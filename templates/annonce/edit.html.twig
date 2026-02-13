@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'annonce{% endblock %}
+
+{% block page_title %}
+    Modifier l'annonce
+{% endblock %}
+
+{% block main %}
+
+<div class="annonce-wrapper">
+    <div class="ducati-form-card">
+
+        <h2 class="ducati-title">Modifier l'annonce</h2>
+
+        {{ form_start(form) }}
+
+            <div class="ducati-row">
+                <div class="ducati-field">
+                    {{ form_label(form.titre) }}
+                    {{ form_widget(form.titre) }}
+                    {{ form_errors(form.titre) }}
+                </div>
+            </div>
+
+            <div class="ducati-row two-cols">
+                <div class="ducati-field">
+                    {{ form_label(form.marque) }}
+                    {{ form_widget(form.marque) }}
+                    {{ form_errors(form.marque) }}
+                </div>
+
+                <div class="ducati-field">
+                    {{ form_label(form.modele) }}
+                    {{ form_widget(form.modele) }}
+                    {{ form_errors(form.modele) }}
+                </div>
+            </div>
+
+            <div class="ducati-row two-cols">
+                <div class="ducati-field">
+                    {{ form_label(form.annee) }}
+                    {{ form_widget(form.annee) }}
+                    {{ form_errors(form.annee) }}
+                </div>
+
+                <div class="ducati-field">
+                    {{ form_label(form.kilometrage) }}
+                    {{ form_widget(form.kilometrage) }}
+                    {{ form_errors(form.kilometrage) }}
+                </div>
+            </div>
+
+            <div class="ducati-row">
+                <div class="ducati-field">
+                    {{ form_label(form.prix) }}
+                    {{ form_widget(form.prix) }}
+                    {{ form_errors(form.prix) }}
+                </div>
+            </div>
+
+            <div class="ducati-row">
+                <div class="ducati-field">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                </div>
+            </div>
+
+            <div class="ducati-row">
+                <div class="ducati-field">
+                    {{ form_label(form.image) }}
+                    {{ form_widget(form.image, {'attr': {'class': 'ducati-file'}}) }}
+                    {{ form_errors(form.image) }}
+                </div>
+            </div>
+
+            <div class="ducati-actions">
+                <button class="ducati-btn">Enregistrer les modifications</button>
+                <a href="{{ path('annonce_list') }}" class="ducati-btn">
+                    Annuler
+                </a>
+            </div>
+
+        {{ form_end(form) }}
+
+    </div>
+</div>
+
+{% endblock %}

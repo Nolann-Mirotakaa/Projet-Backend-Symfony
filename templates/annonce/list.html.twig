@@ -2,70 +2,96 @@
 
 {% block title %}Annonces motos{% endblock %}
 
-{% block page_title %}
-    Annonces motos
-{% endblock %}
-
 {% block main %}
+
+<form method="get" class="search-bar">
+
+    <input type="text" name="search"
+           placeholder="Rechercher un modèle..."
+           value="{{ app.request.get('search') }}">
+
+    <select name="marque">
+        <option value="">Toutes marques</option>
+
+        {% for m in marques %}
+            <option value="{{ m }}"
+                {% if app.request.get('marque') == m %}selected{% endif %}>
+                {{ m }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <input type="number" name="prixMax"
+           placeholder="Prix max"
+           value="{{ app.request.get('prixMax') }}">
+
+    <select name="tri">
+        <option value="">Trier par</option>
+        <option value="prix_asc">Prix croissant</option>
+        <option value="prix_desc">Prix décroissant</option>
+        <option value="annee_desc">Année</option>
+    </select>
+
+    <button class="ducati-btn-1">Rechercher</button>
+
+    <a href="{{ path('annonce_list') }}" class="ducati-btn-1">
+        Reset
+    </a>
+
+</form>
+
 
 <div class="annonces-container">
 
-    {% for annonce in annonces %}
+{% for annonce in annonces %}
 
-        <a href="{{ path('annonce_show', { id: annonce.id }) }}" class="annonce-link">
+<a href="{{ path('annonce_show', { id: annonce.id }) }}" class="annonce-link">
 
-            <article class="annonce-card">
+<article class="annonce-card">
 
-                <div class="annonce-image">
-                    {% if annonce.image %}
-                        <img src="{{ asset('uploads/' ~ annonce.image) }}" alt="Moto">
-                    {% endif %}
-                </div>
-
-                <div class="annonce-body">
-                    <h3 class="annonce-title">{{ annonce.titre }}</h3>
-
-                    <div class="annonce-details">
-                        <div class="annonce-detail">
-                            <span class="label">Marque</span>
-                            <span class="value">{{ annonce.marque }}</span>
-                        </div>
-
-                        <div class="annonce-detail">
-                            <span class="label">Modèle</span>
-                            <span class="value">{{ annonce.modele }}</span>
-                        </div>
-
-                        <div class="annonce-detail">
-                            <span class="label">Année</span>
-                            <span class="value">{{ annonce.annee }}</span>
-                        </div>
-
-                        {% if annonce.kilometrage %}
-                            <div class="annonce-detail">
-                                <span class="label">Kilométrage</span>
-                                <span class="value">{{ annonce.kilometrage }} km</span>
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <div class="annonce-price">
-                        {{ annonce.prix }} €
-                    </div>
-                </div>
-            </article>
-        </a>
-    {% else %}
-        <p>Aucune annonce disponible.</p>
-    {% endfor %}
+<div class="annonce-image">
+{% if annonce.image %}
+<img src="{{ asset('uploads/' ~ annonce.image) }}">
+{% endif %}
 </div>
+
+<div class="annonce-body">
+
+<h3>{{ annonce.titre }}</h3>
+
+<p>{{ annonce.marque }} — {{ annonce.modele }}</p>
+
+<p>{{ annonce.annee }}</p>
+
+{% if annonce.kilometrage %}
+<p>{{ annonce.kilometrage }} km</p>
+{% endif %}
+
+<div class="annonce-price">
+{{ annonce.prix }} €
+</div>
+
+</div>
+</article>
+</a>
+
+{% else %}
+<p>Aucune annonce trouvée.</p>
+{% endfor %}
+
+</div>
+
+
 <div class="center-buttons">
-    <button onclick="history.back()" class="ducati-btn">
-        ←  Retour
-    </button>
 
-    <a href="#" class="ducati-btn">
-        ⬆ Haut de page
-    </a>
+<button onclick="history.back()" class="ducati-btn">
+← Retour
+</button>
+
+<a href="#" class="ducati-btn">
+⬆ Haut de page
+</a>
+
 </div>
+
 {% endblock %}

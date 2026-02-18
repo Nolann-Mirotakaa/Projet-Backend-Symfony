@@ -21,7 +21,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'auteur', targetEntity: AnnonceMoto::class)]
+    #[ORM\OneToMany(
+        mappedBy: 'auteur',
+        targetEntity: AnnonceMoto::class,
+        cascade: ['remove'],
+        orphanRemoval: true
+    )]
     private Collection $annonces;
 
     #[ORM\Column(length: 180)]

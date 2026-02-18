@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Moto;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,7 +22,6 @@ class AdminController extends AbstractController
     public function dashboard(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         return $this->render('admin/dashboard.html.twig');
     }
 
@@ -29,7 +29,6 @@ class AdminController extends AbstractController
     public function annonces(AnnonceMotoRepository $repo): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         return $this->render('admin/panel.html.twig', [
             'annonces' => $repo->findAll()
         ]);
@@ -39,7 +38,6 @@ class AdminController extends AbstractController
     public function users(UserRepository $repo): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         return $this->render('admin/users.html.twig', [
             'users' => $repo->findAll()
         ]);
@@ -49,38 +47,43 @@ class AdminController extends AbstractController
     public function promote(User $user, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $user->setRoles(['ROLE_ADMIN']);
         $em->flush();
-
         $this->addFlash('success', 'Utilisateur promu admin');
-
         return $this->redirectToRoute('admin_users');
     }
 
-    #[Route('/users/{id}/delete', name: 'admin_user_delete')]
-    public function deleteUser(User $user, EntityManagerInterface $em): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+    #[Route('/admin/user/delete/{id}', name: 'admin_user_delete')]
+    public function delete(
+        User $user,
+        EntityManagerInterface $em,
+        Security $security
+    ): Response {
 
+        $currentUser = $security->getUser();
+        if ($user === $this->getUser()) {
+            $this->addFlash('danger', 'Vous ne pouvez pas supprimer votre propre compte.');
+            return $this->redirectToRoute('admin_users');
+        }
+        if ($user->getId() === 1) {
+            $this->addFlash('danger', 'Le compte administrateur principal ne peut pas être supprimé.');
+            return $this->redirectToRoute('admin_users');
+        }
         $em->remove($user);
         $em->flush();
-
-        $this->addFlash('success', 'Utilisateur supprimé');
-
+        $this->addFlash('success', 'Utilisateur supprimé.');
         return $this->redirectToRoute('admin_users');
     }
-
 
     #[Route('/motos', name: 'admin_motos')]
     public function motos(MotoRepository $repo): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         return $this->render('admin/motos.html.twig', [
             'motos' => $repo->findAll()
         ]);
     }
+
     #[Route('/motos/edit/{id}', name: 'admin_moto_edit')]
     public function editMoto(
         Moto $moto,
@@ -89,9 +92,7 @@ class AdminController extends AbstractController
     ): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         if ($request->isMethod('POST')) {
-
             $moto->setName($request->request->get('name'));
             $moto->setBrand($request->request->get('brand'));
             $moto->setCategory($request->request->get('category'));
@@ -99,14 +100,10 @@ class AdminController extends AbstractController
             $moto->setPower((int)$request->request->get('power'));
             $moto->setDisplacement((int)$request->request->get('displacement'));
             $moto->setEngineType($request->request->get('engineType'));
-
             $em->flush();
-
-            $this->addFlash('success', 'Model updated ✅');
-
+            $this->addFlash('succes', 'model mis à jour');
             return $this->redirectToRoute('admin_motos');
         }
-
         return $this->render('admin/moto_edit.html.twig', [
             'moto' => $moto
         ]);
@@ -118,12 +115,9 @@ class AdminController extends AbstractController
         EntityManagerInterface $em
     ): RedirectResponse {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $em->remove($moto);
         $em->flush();
-
         $this->addFlash('success', 'Model deleted');
-
         return $this->redirectToRoute('admin_motos');
     }
 }

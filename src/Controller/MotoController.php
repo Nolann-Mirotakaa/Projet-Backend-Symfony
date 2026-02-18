@@ -55,12 +55,23 @@ class MotoController extends AbstractController
     }
 
     #[Route('/annonces', name: 'annonce_list')]
-    public function list(AnnonceMotoRepository $repo): Response
+    public function list(Request $request, AnnonceMotoRepository $repo): Response
     {
-        $annonces = $repo->findLatest();
+        $search = $request->query->get('search');
+        $marque = $request->query->get('marque');
+        $prixMax = $request->query->get('prixMax');
+        $tri = $request->query->get('tri');
+
+        $prixMax = $prixMax !== null && $prixMax !== ''
+            ? (int) $prixMax
+            : null;
+
+        $annonces = $repo->search($search, $marque, $prixMax, $tri);
+        $marques = $repo->findAllMarques();
 
         return $this->render('annonce/list.html.twig', [
             'annonces' => $annonces,
+            'marques' => $marques
         ]);
     }
 

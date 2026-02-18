@@ -32,7 +32,12 @@
                     {% else %}
                         <span class="badge-admin">ADMIN</span>
                     {% endif %}
-
+                    {% if 'ROLE_SUPER_ADMIN' not in user.roles and user.id != 1 %}
+                        <a href="{{ path('admin_user_delete', {id: user.id}) }}"
+                        class="ducati-btn" onclick="return confirm('Supprimer cet utilisateur ?')">
+                            Supprimer
+                        </a>
+                    {% endif %}
                 </div>
 
             </div>

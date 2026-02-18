@@ -1,20 +1,22 @@
 <nav class="main-nav">
 
     <div class="nav-left">
-        <a href="{{ path('home') }}">Accueil</a>
-        <a href="{{ path('about') }}">Histoire</a>
-        <a href="{{ path('models') }}">Modèles</a>
-        <a href="{{ path('annonce_list') }}">Annonces</a>
+        <a href="{{ path('home') }}" class="ducati-btn-2">Accueil</a>
+        <a href="{{ path('about') }}" class="ducati-btn-2">Histoire</a>
+        <a href="{{ path('models') }}" class="ducati-btn-2">Modèles</a>
+        <a href="{{ path('annonce_list') }}" class="ducati-btn-2">Annonces</a>
         {% if app.user %}
-            <a href="{{ path('annonce_create') }}">Ajouter</a>
+            <a href="{{ path('annonce_create') }}" class="ducati-btn-2">Ajouter</a>
         {% endif %}
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('admin_dashboard') }}">Admin</a>
+        <a href="{{ path('admin_dashboard') }}" class="ducati-btn-2">Admin</a>
     {% endif %}
     </div>
 
-        <div class="logo">
-        Ducati
+    <div class="nav-center">
+        <a href="{{ path('home') }}" class="logo">
+            Ducati
+        </a>
     </div>
 
     <div class="nav-right">

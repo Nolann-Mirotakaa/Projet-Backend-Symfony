@@ -8,7 +8,7 @@
     <title>{% block title %}Ducati{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 
 <header>
     {% block menu %}

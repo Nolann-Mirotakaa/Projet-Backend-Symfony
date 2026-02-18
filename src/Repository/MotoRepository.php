@@ -16,6 +16,55 @@ class MotoRepository extends ServiceEntityRepository
         parent::__construct($registry, Moto::class);
     }
 
+    public function findAllCategories(): array
+    {
+        $result = $this->createQueryBuilder('m')
+            ->select('DISTINCT m.category')
+            ->orderBy('m.category', 'ASC')
+            ->getQuery()
+            ->getScalarResult();
+
+        return array_column($result, 'category');
+    }
+
+    public function searchModels(?string $search, ?string $categorie, ?string $tri): array
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        if (!empty($search)) {
+            $qb->andWhere('m.name LIKE :search OR m.brand LIKE :search')
+            ->setParameter('search', '%' . $search . '%');
+        }
+
+        if (!empty($categorie)) {
+            $qb->andWhere('m.category = :cat')
+            ->setParameter('cat', $categorie);
+        }
+
+        switch ($tri) {
+            case 'name_asc':
+                $qb->orderBy('m.name', 'ASC');
+                break;
+
+            case 'name_desc':
+                $qb->orderBy('m.name', 'DESC');
+                break;
+
+            case 'power_desc':
+                $qb->orderBy('m.power', 'DESC');
+                break;
+
+            case 'year_desc':
+                $qb->orderBy('m.year', 'DESC');
+                break;
+
+            default:
+                $qb->orderBy('m.name', 'ASC');
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Moto[] Returns an array of Moto objects
 //     */

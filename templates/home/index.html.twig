@@ -5,29 +5,68 @@
 {% block page_title %}
     Ducati
 {% endblock %}
-
+{% block body_class %}page-home{% endblock %}
 {% block main %}
+<main">
     <div class="card highlight">
-        <h2>L'ADN Ducati</h2>
+        <h2>L’ADN Ducati</h2>
         <p>
-            Ducati incarne la performance, le design italien et la passion de la moto.
+            Ducati représente l’équilibre parfait entre puissance,
+            précision mécanique et émotion brute.
+            Chaque moto est conçue pour offrir une expérience
+            de pilotage inoubliable.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Une marque née pour la performance</h2>
+        <p>
+            Depuis près d’un siècle, Ducati repousse les limites
+            de l’ingénierie moto.
+            Son objectif n’a jamais changé :
+            créer des machines capables de faire battre le cœur
+            plus vite à chaque accélération.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Un design reconnaissable entre mille</h2>
+        <p>
+            Ligne agressive, signature lumineuse,
+            architecture moteur unique…
+            Une Ducati se reconnaît instantanément,
+            même à distance.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>L’esprit racing dans chaque modèle</h2>
+        <p>
+            Les technologies issues de la compétition
+            se retrouvent directement sur les modèles de route.
+            Résultat : précision chirurgicale,
+            stabilité extrême et sensations intenses.
         </p>
     </div>
 
     <div class="card highlight">
-        <h2>Pourquoi Ducati ?</h2>
+        <h2>Plus qu’une moto</h2>
         <p>
-            Technologie, compétition, innovation et caractère unique.
+            Posséder une Ducati,
+            c’est rejoindre une communauté mondiale
+            de passionnés qui partagent la même vision :
+            la moto comme émotion.
         </p>
     </div>
 
-<div class="center-buttons">
-    <button onclick="history.back()" class="ducati-btn">
-        ←  Retour
-    </button>
+    <div class="center-buttons">
+        <button onclick="history.back()" class="ducati-btn">
+            ← Retour
+        </button>
 
-    <a href="#" class="ducati-btn">
-        ⬆ Haut de page
-    </a>
-</div>
+        <a href="#" class="ducati-btn">
+            ⬆ Haut de page
+        </a>
+    </div>
+</main>
 {% endblock %}

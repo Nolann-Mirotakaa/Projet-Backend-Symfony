@@ -1,15 +1,91 @@
 /* =======================
    Styles globaux
 ======================= */
-body { margin: 0; font-family: Arial, sans-serif; background: #111; color: #eee; padding: 0; height: 100%;} 
+body { margin: 0; font-family: Arial, sans-serif; background: #111; color: #eee; padding: 0; height: 100%}
 header, footer { background: #c00; padding: 1rem; text-align: center; } h2 { color: #ff4444; } 
-nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; } 
+nav a { color: white; margin: 0 ; text-decoration: none; font-weight: bold; } 
 main { padding: 0; min-height: 100vh; } 
-.card { background: #222; padding: 1rem; margin: 1rem 0; border-radius: 8px; } 
-.highlight { border: 2px solid #c00; }
-
 html {
     scroll-behavior: smooth;
+}
+
+/* ===== NAVBAR STRUCTURE ===== */
+.page-home {
+    background: url("https://img1.wallspic.com/crops/3/8/1/9/3/139183/139183-homme_en_casque_de_moto_rouge_et_noir_a_cheval_sur_le_velo_de_sport_rouge_sur_route_pendant_la_journee-3840x2160.jpg") center / cover fixed no-repeat;
+}
+
+.page-history {
+    background: url("https://www.actumoto.ch/wp-content/uploads/2020/11/DUCATI_PANIGALE_V4_SP-_27__UC211461_High.jpg") center / cover fixed no-repeat;
+}
+
+.page-models {
+    background: url("https://www.fond-ecran-hd.net/Public/uploads/2025-06-22/ducatipanigalev4motosportivewallpaperhd4kpcsmartphone.jpeg") center / cover fixed no-repeat;
+}
+
+.page-ajouter {
+    background: url("https://www.actumoto.ch/wp-content/uploads/2020/11/DUCATI_PANIGALE_V4_SP-_12__UC211444_High-1.jpg") center / cover fixed no-repeat;
+}
+
+.main-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+}
+
+/* centre totalement indépendant */
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* logo */
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+/* zones gauche / droite fixes */
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 260px;
+}
+
+.nav-right {
+    justify-content: flex-end;
+}
+
+.card {
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+    padding: 1.2rem;
+    margin: 1.5rem auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255,0,0,0.4);
+    max-width: 900px;
+}
+
+.highlight {
+    border: 2px solid rgba(255,0,0,0.7);
+    box-shadow: 0 0 20px rgba(255,0,0,0.2);
+}
+
+.card p {
+    line-height: 1.7;
+    color: #eee;
+}
+
+.card h2 {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 /* PAGE CONNEXION */
@@ -67,39 +143,6 @@ html {
     margin-bottom: 15px;
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    user-select: none;
-    cursor: default;
-}
-
-.main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-}
-
-/* Navigation gauche */
-.nav-left a {
-    color: white;
-    font-weight: bold;
-    margin-right: 20px;
-    text-decoration: none;
-}
-
-.nav-left a:hover {
-    text-decoration: underline;
-}
-
-/* Partie droite */
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 .nav-user {
     color: white;
     font-weight: bold;
@@ -123,6 +166,22 @@ html {
     box-shadow: 0 0 10px rgba(255,0,0,0.7);
 }
 
+.ducati-btn-2 {
+    background: linear-gradient(135deg, #c00, #222);
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.ducati-btn2:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px rgba(255,0,0,0.7);
+}
 
 /* Wrapper centré */
 .annonce-wrapper {
@@ -174,6 +233,42 @@ html {
     color: #fff;
     font-weight: bold;
 }
+
+/* ==========================
+   Inputs visibles sur fond image
+========================== */
+
+.page-ajouter .ducati-field input,
+.page-ajouter .ducati-field textarea,
+.page-ajouter .ducati-field select {
+
+    background: rgba(40, 40, 40, 0.95); /* gris foncé lisible */
+    border: 2px solid rgba(255, 0, 0, 0.6);
+    color: #fff;
+
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+/* placeholder lisible */
+.page-ajouter input::placeholder,
+.page-ajouter textarea::placeholder {
+    color: #bdbdbd;
+}
+
+/* focus premium Ducati */
+.page-ajouter input:focus,
+.page-ajouter textarea:focus,
+.page-ajouter select:focus {
+
+    outline: none;
+    border-color: #ff2a2a;
+    background: rgba(55,55,55,0.98);
+
+    box-shadow: 0 0 12px rgba(255,0,0,0.7);
+}
+
 
 .ducati-field input,
 .ducati-field textarea,
@@ -512,8 +607,20 @@ html {
     color: #ff4444;
 }
 
+.search-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
 
-
+.search-bar input,
+.search-bar select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
 
 
 /* =======================

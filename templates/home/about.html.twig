@@ -1,25 +1,102 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}À propos - Ducati{% endblock %}
+{% block title %}Histoire - Ducati{% endblock %}
 
 {% block page_title %}
-    À propos de Ducati
+    Histoire de Ducati
 {% endblock %}
-
+{% block body_class %}page-history{% endblock %}
 {% block main %}
-    <div class="card highlight">
-        <h2>Histoire</h2>
-        <p>
-            Fondée en Italie, Ducati est une marque mythique du sport moto.
-        </p>
-    </div>
+
+<div class="card highlight">
+    <h2>Une icône née de la passion</h2>
+    <p>
+        Fondée en 1926 à Bologne, Ducati n’était
+        à l’origine pas un constructeur de motos… mais une entreprise spécialisée
+        dans les composants radio et électroniques.
+    </p>
+</div>
+
+<div class="card">
+    <h2>1926 — Les débuts industriels</h2>
+    <p>
+        Les frères Ducati créent leur société avec l’ambition d’innover technologiquement.
+        Leur entreprise devient rapidement une référence européenne dans les technologies
+        radio, symbole du savoir-faire industriel italien.
+    </p>
+</div>
+
+<div class="card">
+    <h2>1946 — La naissance de la moto Ducati</h2>
+    <p>
+        Après la Seconde Guerre mondiale, l’entreprise se réinvente et lance le
+        <strong>Cucciolo</strong>, un petit moteur adaptable sur un vélo.
+        Ce projet marque la transformation historique de Ducati en constructeur
+        de deux-roues motorisés.
+    </p>
+</div>
+
+<div class="card">
+    <h2>1954 — L’ère de l’ingénierie de génie</h2>
+    <p>
+        L’arrivée de l’ingénieur Fabio Taglioni change tout.
+        Il développe le célèbre système <strong>Desmodromique</strong>,
+        technologie révolutionnaire permettant un contrôle extrême des soupapes,
+        devenue signature technique de la marque.
+    </p>
+</div>
+
+<div class="card">
+    <h2>1970-1990 — Domination en compétition</h2>
+    <p>
+        Ducati s’impose dans les courses internationales.
+        Les moteurs bicylindres en L deviennent légendaires,
+        offrant un mélange unique de puissance brute,
+        de couple massif et de caractère mécanique.
+    </p>
+</div>
+
+<div class="card">
+    <h2>1994 — La naissance d’un mythe</h2>
+    <p>
+        La sortie de la <strong>916</strong> redéfinit le design moto.
+        Son esthétique radicale, son monobras arrière
+        et ses performances en font l’une des motos les plus iconiques de l’histoire.
+    </p>
+</div>
+
+<div class="card">
+    <h2>2000 — L’âge moderne</h2>
+    <p>
+        Ducati entre dans une nouvelle ère technologique :
+        électronique embarquée, contrôle de traction,
+        modes de conduite, suspensions intelligentes…
+        La marque devient un laboratoire d’innovation.
+    </p>
+</div>
+
+<div class="card">
+    <h2>Aujourd’hui — Une légende vivante</h2>
+    <p>
+        Ducati n’est plus seulement un constructeur.
+        C’est une philosophie.
+        Chaque modèle incarne un équilibre parfait entre
+        design italien, technologie de pointe et émotions pures.
+    </p>
+</div>
+
+<div class="card highlight" style="text-align:center; font-style:italic;">
+    "{{ citation }}"
+</div>
+
 <div class="center-buttons">
     <button onclick="history.back()" class="ducati-btn">
-        ←  Retour
+        ← Retour
     </button>
 
     <a href="#" class="ducati-btn">
         ⬆ Haut de page
     </a>
 </div>
+
 {% endblock %}

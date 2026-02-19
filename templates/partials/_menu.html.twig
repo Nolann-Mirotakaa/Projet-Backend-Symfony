@@ -1,18 +1,24 @@
 <nav class="main-nav">
 
     <div class="nav-left">
-        <a href="{{ path('home') }}" class="ducati-btn-2">Accueil</a>
-        <a href="{{ path('about') }}" class="ducati-btn-2">Histoire</a>
-        <a href="{{ path('models') }}" class="ducati-btn-2">Modèles</a>
-        <a href="{{ path('annonce_list') }}" class="ducati-btn-2">Annonces</a>
-        {% if app.user %}
-            <a href="{{ path('annonce_create') }}" class="ducati-btn-2">Ajouter</a>
-        {% endif %}
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('admin_dashboard') }}" class="ducati-btn-2">Admin</a>
-    {% endif %}
-    </div>
 
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="{{ path('home') }}" class="ducati-btn-2">Accueil</a>
+            <a href="{{ path('about') }}" class="ducati-btn-2">Histoire</a>
+            <a href="{{ path('models') }}" class="ducati-btn-2">Modèles</a>
+            <a href="{{ path('annonce_list') }}" class="ducati-btn-2">Annonces</a>
+
+            {% if app.user %}
+                <a href="{{ path('annonce_create') }}" class="ducati-btn-2">Ajouter</a>
+            {% endif %}
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin_dashboard') }}" class="ducati-btn-2">Admin</a>
+            {% endif %}
+        </div>
+    </div>
     <div class="nav-center">
         <a href="{{ path('home') }}" class="logo">
             Ducati
@@ -20,27 +26,30 @@
     </div>
 
     <div class="nav-right">
-        {% if app.user %}
-            <span class="nav-user">
-                {{ app.user.prenom }}
-            </span>
+        <div class="nav-links" id="navLinks">
+            {% if app.user %}
+                <span class="nav-user">
+                    {{ app.user.prenom }}
+                </span>
 
-            <a href="{{ path('app_logout') }}"
-               class="ducati-btn-1">
-                Déconnexion
-            </a>
-        {% else %}
-            <a href="{{ path('app_login') }}"
-               class="ducati-btn-1">
-                Connexion
-            </a>
+                <a href="{{ path('app_logout') }}"
+                class="ducati-btn-1">
+                    Déconnexion
+                </a>
+            {% else %}
+                <a href="{{ path('app_login') }}"
+                class="ducati-btn-1">
+                    Connexion
+                </a>
 
-            <a href="{{ path('app_register') }}"
-               class="ducati-btn-1">
-                Inscription
-            </a>
-        {% endif %}
+                <a href="{{ path('app_register') }}"
+                class="ducati-btn-1">
+                    Inscription
+                </a>
+            {% endif %}
+        </div>
     </div>
 
 </nav>
+
 

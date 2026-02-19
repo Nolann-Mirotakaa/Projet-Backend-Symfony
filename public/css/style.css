@@ -56,6 +56,11 @@ nav a {
         center / cover fixed no-repeat;
 }
 
+.page-admin {
+    background: url("https://i.pinimg.com/736x/18/cd/ad/18cdad5efa9e3e4d695373ec44971c55.jpg")
+        center / cover fixed no-repeat;
+}
+
 /* Navigation */
 .main-nav {
     display: flex;
